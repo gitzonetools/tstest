@@ -8,4 +8,7 @@ import * as smartlog from '@pushrocks/smartlog';
 import * as smartpromise from '@pushrocks/smartpromise';
 import * as smartshell from '@pushrocks/smartshell';
 
-export { consolecolor, path, smartfile, smartlog, smartpromise, smartshell };
+// sindresorhus
+import * as figures from 'figures';
+
+export { consolecolor, figures, path, smartfile, smartlog, smartpromise, smartshell };

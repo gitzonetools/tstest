@@ -64,14 +64,14 @@ export class TapParser {
         if (testOk) {
           console.log(
             logPrefixes.TapPrefix,
-            ` ${cs(`Test ${testId} -> Success!`, 'green')} | ` +
+            ` ${cs(`T${testId} ${plugins.figures.tick}`, 'green')} | ` +
             cs(testSubject, 'blue') +
             ` | ${cs(`${testDuration} milliseconds`, 'orange')}`
           );
         } else {
           console.log(
             logPrefixes.TapPrefix,
-            ` ${cs(`Test ${testId} -> Error!`, 'red')} | ` +
+            ` ${cs(`T${testId} ${plugins.figures.cross}`, 'red')} | ` +
             cs(testSubject, 'blue') +
             ` | ${cs(`${testDuration} milliseconds`, 'orange')}`
           );

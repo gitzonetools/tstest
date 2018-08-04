@@ -28,6 +28,8 @@
     "@pushrocks/smartfile": "^6.0.3",
     "@pushrocks/smartlog": "^2.0.1",
     "@pushrocks/smartpromise": "^2.0.5",
-    "@pushrocks/smartshell": "^2.0.5"
+    "@pushrocks/smartshell": "^2.0.5",
+    "@types/figures": "^2.0.0",
+    "figures": "^2.0.0"
   }
 }
