@@ -1,5 +1,5 @@
 {
-  "name": "tstest",
+  "name": "@pushrocks/tstest",
   "version": "1.0.2",
   "private": false,
   "description": "a test utility to run tests that match test/**/*.ts",
@@ -7,15 +7,19 @@
   "typings": "dist/index.d.ts",
   "author": "Lossless GmbH",
   "license": "MIT",
+  "bin": {
+    "tstest": "./cli.js"
+  },
   "scripts": {
     "test": "(npm run prepareTest && npm run tstest && npm run cleanUp)",
     "prepareTest": "git clone git@gitlab.com:sandboxzone/sandbox-npmts.git .nogit/sandbox-npmts && cd .nogit/sandbox-npmts && npm install",
     "tstest": "cd .nogit/sandbox-npmts && node ../../cli.ts.js test/",
     "cleanUp": "rm -rf .nogit/sandbox-npmts",
     "format": "(gitzone format)",
-    "build": "echo \"Not needed for now\""
+    "build": "(tsbuild)"
   },
   "devDependencies": {
+    "@gitzone/tsbuild": "^2.0.21",
     "@pushrocks/tapbundle": "^3.0.1"
   },
   "dependencies": {
