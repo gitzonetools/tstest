@@ -15,7 +15,6 @@ export class TapCombinator {
   evaluate() {
     console.log(`Ran ${this.tapParserStore.length} Testfiles!`);
     for (const tapParser of this.tapParserStore) {
-
     }
   }
 }

@@ -7,9 +7,7 @@ export class TapTestResult {
   testLogBuffer = Buffer.from('');
   testOk: boolean = false;
   testSettled: boolean = false;
-  constructor(public id: number) {
-    
-  }
+  constructor(public id: number) {}
 
   /**
    * adds a logLine to the log buffer of the test
