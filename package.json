@@ -9,9 +9,9 @@
   "license": "MIT",
   "scripts": {
     "test": "(npm run prepareTest && npm run tstest && npm run cleanUp)",
-    "prepareTest": "cd test/ && git clone git@gitlab.com:sandboxzone/sandbox-npmts.git && cd sandbox-npmts && npm install",
-    "tstest": "cd test/sandbox-npmts && node ../../cli.ts.js test/",
-    "cleanUp": "cd test/ && rm -rf sandbox-npmts",
+    "prepareTest": "git clone git@gitlab.com:sandboxzone/sandbox-npmts.git .nogit/sandbox-npmts && cd .nogit/sandbox-npmts && npm install",
+    "tstest": "cd .nogit/sandbox-npmts && node ../../cli.ts.js test/",
+    "cleanUp": "rm -rf .nogit/sandbox-npmts",
     "format": "(gitzone format)",
     "build": "echo \"Not needed for now\""
   },
