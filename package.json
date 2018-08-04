@@ -1,6 +1,6 @@
 {
   "name": "@pushrocks/tstest",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": false,
   "description": "a test utility to run tests that match test/**/*.ts",
   "main": "dist/index.js",
