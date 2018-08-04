@@ -6,6 +6,7 @@ import { coloredString as cs } from '@pushrocks/consolecolor';
 // ============
 import * as plugins from './tstest.plugins';
 import { TapTestResult } from './tstest.tap.testresult';
+import * as logPrefixes from './tstest.logprefixes';
 
 export class TapParser {
   resultStore: TapTestResult[] = [];
@@ -13,7 +14,7 @@ export class TapParser {
   expectedTestsRegex = /([0-9]*)\.\.([0-9]*)/;
   expectedTests: number;
 
-  testStatusRegex = /(ok|not\sok)\s([0-9]+)\s-\s/;
+  testStatusRegex = /(ok|not\sok)\s([0-9]+)\s-\s(.*)\s#\stime=(.*)ms$/;
   activeTapTestResult: TapTestResult;
 
   private _getNewTapTestResult() {
@@ -51,6 +52,9 @@ export class TapParser {
           return false;
         })();
 
+        const testSubject = regexResult[3];
+        const testDuration = parseInt(regexResult[4]);
+
         // test for protocol error
         if (testId !== this.activeTapTestResult.id) {
           console.log(`:::TAP PROTOCOL ERROR::: Something is strange! Test Ids are not equal!`);
@@ -58,9 +62,19 @@ export class TapParser {
         this.activeTapTestResult.setTestResult(testOk);
 
         if (testOk) {
-          console.log(cs(`:::TAP::: Success: Test ${testId} is ok!`, 'green', 'black'));
+          console.log(
+            logPrefixes.TapPrefix,
+            ` ${cs(`Test ${testId} -> Success!`, 'green')} | ` +
+            cs(testSubject, 'blue') +
+            ` | ${cs(`${testDuration} milliseconds`, 'orange')}`
+          );
         } else {
-          console.log(cs(`:::TAP::: Error: Test ${testId} is NOT ok!`, 'green', 'black'));
+          console.log(
+            logPrefixes.TapPrefix,
+            ` ${cs(`Test ${testId} -> Error!`, 'red')} | ` +
+            cs(testSubject, 'blue') +
+            ` | ${cs(`${testDuration} milliseconds`, 'orange')}`
+          );
         }
       }
 

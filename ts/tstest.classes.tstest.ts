@@ -20,6 +20,7 @@ export class TsTest {
       console.log(cs(fileName, 'orange'));
     }
     console.log('-'.repeat(16));
+    console.log(''); // force new line
     const smartshellInstance = new plugins.smartshell.Smartshell({
       executor: 'bash',
       pathDirectories: [paths.binDirectory],
@@ -28,10 +29,12 @@ export class TsTest {
     const tapCombinator = new TapCombinator(); // lets create the TapCombinator
     for (const fileName of fileNamesToRun) {
       console.log(`${cs('=> ', 'blue')} Running ${cs(fileName, 'orange')}`);
-      console.log(`=`.repeat(16));
+      console.log(cs(`=`.repeat(16), 'cyan'));
       const tapParser = new TapParser();
       const execResultStreaming = await smartshellInstance.execStreamingSilent(`tsrun ${fileName}`);
       await tapParser.handleTapProcess(execResultStreaming.childProcess);
+      console.log(cs(`^`.repeat(16), 'cyan'));
+      console.log(''); // force new line
       tapCombinator.addTapParser(tapParser);
     }
     tapCombinator.evaluate();
