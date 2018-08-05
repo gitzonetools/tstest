@@ -9,16 +9,23 @@ import { TapTestResult } from './tstest.tap.testresult';
 import * as logPrefixes from './tstest.logprefixes';
 
 export class TapParser {
-  resultStore: TapTestResult[] = [];
+  testStore: TapTestResult[] = [];
 
   expectedTestsRegex = /([0-9]*)\.\.([0-9]*)/;
   expectedTests: number;
+  receivedTests: number;
 
   testStatusRegex = /(ok|not\sok)\s([0-9]+)\s-\s(.*)\s#\stime=(.*)ms$/;
   activeTapTestResult: TapTestResult;
 
+  /**
+   * the constructor for TapParser
+   */
+  constructor(public fileName: string) {}
+
+
   private _getNewTapTestResult() {
-    this.activeTapTestResult = new TapTestResult(this.resultStore.length + 1);
+    this.activeTapTestResult = new TapTestResult(this.testStore.length + 1);
   }
 
   private _processLog(logChunk: Buffer | string) {
@@ -37,7 +44,12 @@ export class TapParser {
         logLineIsTapProtocol = true;
         const regexResult = this.expectedTestsRegex.exec(logLine);
         this.expectedTests = parseInt(regexResult[2]);
-        console.log(`:::TAP::: Expecting ${this.expectedTests} tests!`);
+        console.log(
+          `${logPrefixes.TapPrefix} ${cs(
+            `Expecting ${this.expectedTests} tests!`,
+            'blue'
+          )}`
+        );
 
         // initiating first TapResult
         this._getNewTapTestResult();
@@ -57,23 +69,27 @@ export class TapParser {
 
         // test for protocol error
         if (testId !== this.activeTapTestResult.id) {
-          console.log(`:::TAP PROTOCOL ERROR::: Something is strange! Test Ids are not equal!`);
+          console.log(
+            `${
+              logPrefixes.TapErrorPrefix
+            } Something is strange! Test Ids are not equal!`
+          );
         }
         this.activeTapTestResult.setTestResult(testOk);
 
         if (testOk) {
           console.log(
             logPrefixes.TapPrefix,
-            ` ${cs(`T${testId} ${plugins.figures.tick}`, 'green')} | ` +
-            cs(testSubject, 'blue') +
-            ` | ${cs(`${testDuration} milliseconds`, 'orange')}`
+            `${cs(`T${testId} ${plugins.figures.tick}`, 'green')} | ` +
+              cs(testSubject, 'blue') +
+              ` | ${cs(`${testDuration} ms`, 'orange')}`
           );
         } else {
           console.log(
             logPrefixes.TapPrefix,
-            ` ${cs(`T${testId} ${plugins.figures.cross}`, 'red')} | ` +
-            cs(testSubject, 'blue') +
-            ` | ${cs(`${testDuration} milliseconds`, 'orange')}`
+            `${cs(`T${testId} ${plugins.figures.cross}`, 'red')} | ` +
+              cs(testSubject, 'blue') +
+              ` | ${cs(`${testDuration} ms`, 'orange')}`
           );
         }
       }
@@ -86,10 +102,26 @@ export class TapParser {
       }
 
       if (this.activeTapTestResult && this.activeTapTestResult.testSettled) {
-        this.resultStore.push(this.activeTapTestResult);
+        this.testStore.push(this.activeTapTestResult);
         this._getNewTapTestResult();
       }
     }
+  }
+
+  /**
+   * returns all tests that are not completed
+   */
+  getUncompletedTests() {
+    // TODO:
+  }
+
+  /**
+   * returns all tests that threw an error
+   */
+  getErrorTests() {
+    return this.testStore.filter(tapTestArg => {
+      return !tapTestArg.testOk;
+    });
   }
 
   async handleTapProcess(childProcessArg: ChildProcess) {
@@ -101,6 +133,43 @@ export class TapParser {
       this._processLog(data);
     });
     childProcessArg.on('exit', () => {
+      this.receivedTests = this.testStore.length;
+
+      // check wether all tests ran
+      if (this.expectedTests === this.receivedTests) {
+        console.log(
+          `${logPrefixes.TapPrefix} ${cs(
+            `${this.receivedTests} out of ${
+              this.expectedTests
+            } Tests completed!`,
+            'green'
+          )}`
+        );
+      } else {
+        console.log(
+          `${logPrefixes.TapErrorPrefix} ${cs(
+            `Only ${this.receivedTests} out of ${
+              this.expectedTests
+            } completed!`,
+            'red'
+          )}`
+        );
+      }
+      if (this.getErrorTests().length === 0) {
+        console.log(
+          `${logPrefixes.TapPrefix} ${cs(
+            `All tests are successfull!!!`,
+            'green'
+          )}`
+        );
+      } else {
+        console.log(
+          `${logPrefixes.TapPrefix} ${cs(
+            `${this.getErrorTests().length} tests threw an error!!!`,
+            'red'
+          )}`
+        );
+      }
       done.resolve();
     });
     await done.promise;

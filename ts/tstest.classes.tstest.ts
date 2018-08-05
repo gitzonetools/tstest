@@ -30,7 +30,7 @@ export class TsTest {
     for (const fileName of fileNamesToRun) {
       console.log(`${cs('=> ', 'blue')} Running ${cs(fileName, 'orange')}`);
       console.log(cs(`=`.repeat(16), 'cyan'));
-      const tapParser = new TapParser();
+      const tapParser = new TapParser(fileName);
       const execResultStreaming = await smartshellInstance.execStreamingSilent(`tsrun ${fileName}`);
       await tapParser.handleTapProcess(execResultStreaming.childProcess);
       console.log(cs(`^`.repeat(16), 'cyan'));
