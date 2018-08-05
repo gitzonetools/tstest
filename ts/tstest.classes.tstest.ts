@@ -1,5 +1,7 @@
 import * as plugins from './tstest.plugins';
 import * as paths from './tstest.paths';
+import * as logPrefixes from './tstest.logprefixes';
+
 import { coloredString as cs } from '@pushrocks/consolecolor';
 
 import { TestDirectory } from './tstest.classes.testdirectory';
@@ -15,9 +17,9 @@ export class TsTest {
 
   async run() {
     const fileNamesToRun: string[] = await this.testDir.getTestFilePathArray();
-    console.log(`Found ${fileNamesToRun.length} Testfile(s):`);
+    console.log(`${logPrefixes.TsTestPrefix} Found ${fileNamesToRun.length} Testfile(s):`);
     for (const fileName of fileNamesToRun) {
-      console.log(cs(fileName, 'orange'));
+      console.log(`${logPrefixes.TsTestPrefix} ${cs(fileName, 'orange')}`);
     }
     console.log('-'.repeat(16));
     console.log(''); // force new line
