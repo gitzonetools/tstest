@@ -23,12 +23,12 @@
     "@pushrocks/tapbundle": "^3.0.1"
   },
   "dependencies": {
-    "@gitzone/tsrun": "^1.1.9",
+    "@gitzone/tsrun": "^1.1.11",
     "@pushrocks/consolecolor": "^2.0.1",
-    "@pushrocks/smartfile": "^6.0.3",
+    "@pushrocks/smartfile": "^6.0.6",
     "@pushrocks/smartlog": "^2.0.1",
     "@pushrocks/smartpromise": "^2.0.5",
-    "@pushrocks/smartshell": "^2.0.5",
+    "@pushrocks/smartshell": "^2.0.6",
     "@types/figures": "^2.0.0",
     "figures": "^2.0.0"
   }
