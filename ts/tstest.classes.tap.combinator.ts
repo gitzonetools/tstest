@@ -4,7 +4,7 @@
 import * as plugins from './tstest.plugins';
 import { coloredString as cs } from '@pushrocks/consolecolor';
 
-import { TapParser } from './tstest.tap.parser';
+import { TapParser } from './tstest.classes.tap.parser';
 import * as logPrefixes from './tstest.logprefixes';
 
 export class TapCombinator {
@@ -14,35 +14,33 @@ export class TapCombinator {
   }
 
   evaluate() {
-    console.log(`${logPrefixes.TsTestPrefix} Ran ${this.tapParserStore.length} Testfiles!`);
-    console.log(`${logPrefixes.TsTestPrefix} Here are the overall results:`);
-    
+    console.log(`${logPrefixes.TsTestPrefix} RESULTS FOR ${this.tapParserStore.length} TESTFILE(S):`);
+
     let failGlobal = false; // determine wether tstest should fail
     for (const tapParser of this.tapParserStore) {
-      if(tapParser.getErrorTests().length === 0) {
-        console.log(
+      if (tapParser.getErrorTests().length === 0) {
+        let overviewString =
           logPrefixes.TsTestPrefix +
           cs(` ${tapParser.fileName} ${plugins.figures.tick}`, 'green') +
-          ' | ' +
-          cs(` all tests completed successfully!`, 'blue')
-        )
+          ` ${plugins.figures.pointer} ` +
+          tapParser.getTestOverviewAsString();
+        console.log(overviewString);
       } else {
-        console.log(
+        let overviewString =
           logPrefixes.TsTestPrefix +
           cs(` ${tapParser.fileName} ${plugins.figures.cross}`, 'red') +
-          ' | ' +
-          cs(` Errors ocurred, please check for the logs!`, 'blue')
-        );
+          ` ${plugins.figures.pointer} ` +
+          tapParser.getTestOverviewAsString();
+        console.log(overviewString);
         failGlobal = true;
       }
     }
-    console.log(cs('-'.repeat(16), 'cyan'));
-    console.log(cs('*'.repeat(16), 'cyan'));
-    console.log(cs('-'.repeat(16), 'cyan'));
-    if(!failGlobal) {
-      console.log(cs('Ending with code 0: TESTS ARE PASSING!', 'green'));
+    console.log(cs(plugins.figures.hamburger.repeat(48), 'cyan'));
+    if (!failGlobal) {
+      console.log(cs('FINAL RESULT: SUCCESS!', 'green'));
     } else {
-      console.log(cs('Ending with code 1: TESTS ARE FAILING!', 'red'));
+      console.log(cs('FINAL RESULT: FAIL!', 'red'));
+      process.exit(1);
     }
   }
 }

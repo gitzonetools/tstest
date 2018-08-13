@@ -5,13 +5,13 @@ import { coloredString as cs } from '@pushrocks/consolecolor';
 // combines different tap test files to an overall result
 // ============
 import * as plugins from './tstest.plugins';
-import { TapTestResult } from './tstest.tap.testresult';
+import { TapTestResult } from './tstest.classes.tap.testresult';
 import * as logPrefixes from './tstest.logprefixes';
 
 export class TapParser {
   testStore: TapTestResult[] = [];
 
-  expectedTestsRegex = /([0-9]*)\.\.([0-9]*)/;
+  expectedTestsRegex = /([0-9]*)\.\.([0-9]*)$/;
   expectedTests: number;
   receivedTests: number;
 
@@ -80,14 +80,14 @@ export class TapParser {
         if (testOk) {
           console.log(
             logPrefixes.TapPrefix,
-            `${cs(`T${testId} ${plugins.figures.tick}`, 'green')} | ` +
+            `${cs(`T${testId} ${plugins.figures.tick}`, 'green')} ${plugins.figures.arrowRight} ` +
               cs(testSubject, 'blue') +
               ` | ${cs(`${testDuration} ms`, 'orange')}`
           );
         } else {
           console.log(
             logPrefixes.TapPrefix,
-            `${cs(`T${testId} ${plugins.figures.cross}`, 'red')} | ` +
+            `${cs(`T${testId} ${plugins.figures.cross}`, 'red')} ${plugins.figures.arrowRight} ` +
               cs(testSubject, 'blue') +
               ` | ${cs(`${testDuration} ms`, 'orange')}`
           );
@@ -124,6 +124,28 @@ export class TapParser {
     });
   }
 
+  /**
+   * returns a test overview as string
+   */
+  getTestOverviewAsString() {
+    let overviewString = ''
+    for(let test of this.testStore) {
+      if(overviewString !== '') {
+        overviewString += ' | ';
+      }
+      if (test.testOk) {
+        overviewString += cs(`T${test.id} ${plugins.figures.tick}`, 'green');
+      } else {
+        overviewString += cs(`T${test.id} ${plugins.figures.cross}`, 'red');
+      }
+    }
+    return overviewString;
+  }
+
+  /**
+   * handles a tap process
+   * @param childProcessArg
+   */
   async handleTapProcess(childProcessArg: ChildProcess) {
     const done = plugins.smartpromise.defer();
     childProcessArg.stdout.on('data', data => {

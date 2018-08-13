@@ -3,9 +3,9 @@ import * as paths from './tstest.paths';
 import { Smartfile } from '@pushrocks/smartfile';
 
 // tap related stuff
-import { TapCombinator } from './tstest.tap.combinator';
-import { TapParser } from './tstest.tap.parser';
-import { TapTestResult } from './tstest.tap.testresult';
+import { TapCombinator } from './tstest.classes.tap.combinator';
+import { TapParser } from './tstest.classes.tap.parser';
+import { TapTestResult } from './tstest.classes.tap.testresult';
 
 export class TestDirectory {
   /**

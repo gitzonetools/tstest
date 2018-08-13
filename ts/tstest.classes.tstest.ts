@@ -5,8 +5,8 @@ import * as logPrefixes from './tstest.logprefixes';
 import { coloredString as cs } from '@pushrocks/consolecolor';
 
 import { TestDirectory } from './tstest.classes.testdirectory';
-import { TapCombinator } from './tstest.tap.combinator';
-import { TapParser } from './tstest.tap.parser';
+import { TapCombinator } from './tstest.classes.tap.combinator';
+import { TapParser } from './tstest.classes.tap.parser';
 
 export class TsTest {
   testDir: TestDirectory;
@@ -17,11 +17,13 @@ export class TsTest {
 
   async run() {
     const fileNamesToRun: string[] = await this.testDir.getTestFilePathArray();
-    console.log(`${logPrefixes.TsTestPrefix} Found ${fileNamesToRun.length} Testfile(s):`);
+    console.log(cs(plugins.figures.hamburger.repeat(80), 'cyan'));
+    console.log('');
+    console.log(`${logPrefixes.TsTestPrefix} FOUND ${fileNamesToRun.length} TESTFILE(S):`);
     for (const fileName of fileNamesToRun) {
       console.log(`${logPrefixes.TsTestPrefix} ${cs(fileName, 'orange')}`);
     }
-    console.log('-'.repeat(16));
+    console.log('-'.repeat(48));
     console.log(''); // force new line
     const smartshellInstance = new plugins.smartshell.Smartshell({
       executor: 'bash',
