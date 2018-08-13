@@ -19,11 +19,11 @@
     "build": "(tsbuild)"
   },
   "devDependencies": {
-    "@gitzone/tsbuild": "^2.0.21",
-    "@pushrocks/tapbundle": "^3.0.1"
+    "@gitzone/tsbuild": "^2.0.22",
+    "@pushrocks/tapbundle": "^3.0.5"
   },
   "dependencies": {
-    "@gitzone/tsrun": "^1.1.11",
+    "@gitzone/tsrun": "^1.1.12",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartfile": "^6.0.6",
     "@pushrocks/smartlog": "^2.0.1",
