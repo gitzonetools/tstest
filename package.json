@@ -19,16 +19,16 @@
     "build": "(tsbuild)"
   },
   "devDependencies": {
-    "@gitzone/tsbuild": "^2.0.22",
-    "@pushrocks/tapbundle": "^3.0.5"
+    "@gitzone/tsbuild": "^2.1.2",
+    "@pushrocks/tapbundle": "^3.0.7"
   },
   "dependencies": {
-    "@gitzone/tsrun": "^1.1.12",
+    "@gitzone/tsrun": "^1.1.16",
     "@pushrocks/consolecolor": "^2.0.1",
-    "@pushrocks/smartfile": "^6.0.6",
-    "@pushrocks/smartlog": "^2.0.1",
+    "@pushrocks/smartfile": "^6.0.11",
+    "@pushrocks/smartlog": "^2.0.9",
     "@pushrocks/smartpromise": "^2.0.5",
-    "@pushrocks/smartshell": "^2.0.6",
+    "@pushrocks/smartshell": "^2.0.11",
     "@types/figures": "^2.0.0",
     "figures": "^2.0.0"
   }

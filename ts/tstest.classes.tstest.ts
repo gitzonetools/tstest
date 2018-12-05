@@ -35,7 +35,14 @@ export class TsTest {
       console.log(`${cs('=> ', 'blue')} Running ${cs(fileName, 'orange')}`);
       console.log(cs(`=`.repeat(16), 'cyan'));
       const tapParser = new TapParser(fileName);
-      const execResultStreaming = await smartshellInstance.execStreamingSilent(`tsrun ${fileName}`);
+
+      // tsrun options
+      let tsrunOptions = ''
+      if(process.argv.includes('--web')) {
+        tsrunOptions += ' --web'
+      }
+
+      const execResultStreaming = await smartshellInstance.execStreamingSilent(`tsrun ${fileName}${tsrunOptions}`);
       await tapParser.handleTapProcess(execResultStreaming.childProcess);
       console.log(cs(`^`.repeat(16), 'cyan'));
       console.log(''); // force new line
