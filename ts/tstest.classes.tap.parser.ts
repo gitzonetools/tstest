@@ -23,7 +23,6 @@ export class TapParser {
    */
   constructor(public fileName: string) {}
 
-
   private _getNewTapTestResult() {
     this.activeTapTestResult = new TapTestResult(this.testStore.length + 1);
   }
@@ -45,10 +44,7 @@ export class TapParser {
         const regexResult = this.expectedTestsRegex.exec(logLine);
         this.expectedTests = parseInt(regexResult[2]);
         console.log(
-          `${logPrefixes.TapPrefix} ${cs(
-            `Expecting ${this.expectedTests} tests!`,
-            'blue'
-          )}`
+          `${logPrefixes.TapPrefix} ${cs(`Expecting ${this.expectedTests} tests!`, 'blue')}`
         );
 
         // initiating first TapResult
@@ -70,9 +66,7 @@ export class TapParser {
         // test for protocol error
         if (testId !== this.activeTapTestResult.id) {
           console.log(
-            `${
-              logPrefixes.TapErrorPrefix
-            } Something is strange! Test Ids are not equal!`
+            `${logPrefixes.TapErrorPrefix} Something is strange! Test Ids are not equal!`
           );
         }
         this.activeTapTestResult.setTestResult(testOk);
@@ -128,9 +122,9 @@ export class TapParser {
    * returns a test overview as string
    */
   getTestOverviewAsString() {
-    let overviewString = ''
-    for(let test of this.testStore) {
-      if(overviewString !== '') {
+    let overviewString = '';
+    for (let test of this.testStore) {
+      if (overviewString !== '') {
         overviewString += ' | ';
       }
       if (test.testOk) {
@@ -161,29 +155,20 @@ export class TapParser {
       if (this.expectedTests === this.receivedTests) {
         console.log(
           `${logPrefixes.TapPrefix} ${cs(
-            `${this.receivedTests} out of ${
-              this.expectedTests
-            } Tests completed!`,
+            `${this.receivedTests} out of ${this.expectedTests} Tests completed!`,
             'green'
           )}`
         );
       } else {
         console.log(
           `${logPrefixes.TapErrorPrefix} ${cs(
-            `Only ${this.receivedTests} out of ${
-              this.expectedTests
-            } completed!`,
+            `Only ${this.receivedTests} out of ${this.expectedTests} completed!`,
             'red'
           )}`
         );
       }
       if (this.getErrorTests().length === 0) {
-        console.log(
-          `${logPrefixes.TapPrefix} ${cs(
-            `All tests are successfull!!!`,
-            'green'
-          )}`
-        );
+        console.log(`${logPrefixes.TapPrefix} ${cs(`All tests are successfull!!!`, 'green')}`);
       } else {
         console.log(
           `${logPrefixes.TapPrefix} ${cs(

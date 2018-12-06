@@ -14,7 +14,9 @@ export class TapCombinator {
   }
 
   evaluate() {
-    console.log(`${logPrefixes.TsTestPrefix} RESULTS FOR ${this.tapParserStore.length} TESTFILE(S):`);
+    console.log(
+      `${logPrefixes.TsTestPrefix} RESULTS FOR ${this.tapParserStore.length} TESTFILE(S):`
+    );
 
     let failGlobal = false; // determine wether tstest should fail
     for (const tapParser of this.tapParserStore) {

@@ -37,12 +37,14 @@ export class TsTest {
       const tapParser = new TapParser(fileName);
 
       // tsrun options
-      let tsrunOptions = ''
-      if(process.argv.includes('--web')) {
-        tsrunOptions += ' --web'
+      let tsrunOptions = '';
+      if (process.argv.includes('--web')) {
+        tsrunOptions += ' --web';
       }
 
-      const execResultStreaming = await smartshellInstance.execStreamingSilent(`tsrun ${fileName}${tsrunOptions}`);
+      const execResultStreaming = await smartshellInstance.execStreamingSilent(
+        `tsrun ${fileName}${tsrunOptions}`
+      );
       await tapParser.handleTapProcess(execResultStreaming.childProcess);
       console.log(cs(`^`.repeat(16), 'cyan'));
       console.log(''); // force new line
