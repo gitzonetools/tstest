@@ -2,5 +2,15 @@
   "npmci": {
     "npmGlobalTools": [],
     "npmAccessLevel": "public"
+  },
+  "gitzone": {
+    "module": {
+      "githost": "gitlab.com",
+      "gitscope": "gitzone",
+      "gitrepo": "tstest",
+      "shortDescription": "a test utility to run tests that match test/**/*.ts",
+      "npmPackagename": "@gitzone/tstest",
+      "license": "MIT"
+    }
   }
 }
