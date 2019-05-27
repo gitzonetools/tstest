@@ -28,7 +28,7 @@
     "@pushrocks/smartfile": "^7.0.2",
     "@pushrocks/smartlog": "^2.0.19",
     "@pushrocks/smartpromise": "^3.0.2",
-    "@pushrocks/smartshell": "^2.0.16",
+    "@pushrocks/smartshell": "^2.0.17",
     "@types/figures": "^3.0.1",
     "figures": "^3.0.0"
   }
