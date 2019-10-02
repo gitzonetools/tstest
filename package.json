@@ -1,6 +1,6 @@
 {
   "name": "@gitzone/tstest",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "private": false,
   "description": "a test utility to run tests that match test/**/*.ts",
   "main": "dist/index.js",
