@@ -41,7 +41,7 @@ export class TestDirectory {
   private async _init() {
     this.testfileArray = await plugins.smartfile.fs.fileTreeToObject(
       plugins.path.join(this.cwd, this.relativePath),
-      '**/*.ts'
+      'test*.ts'
     );
   }
 
