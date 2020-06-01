@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@gitzone/tsbundle": "^1.0.69",
-    "@gitzone/tsrun": "^1.2.10",
+    "@gitzone/tsrun": "^1.2.12",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartfile": "^7.0.6",
     "@pushrocks/smartlog": "^2.0.19",
