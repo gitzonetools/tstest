@@ -34,12 +34,13 @@
     "figures": "^3.0.0"
   },
   "files": [
-    "ts/*",
-    "ts_web/*",
-    "dist/*",
-    "dist_web/*",
-    "dist_ts_web/*",
-    "assets/*",
+    "ts/**/*",
+    "ts_web/**/*",
+    "dist/**/*",
+    "dist_*/**/*",
+    "dist_ts/**/*",
+    "dist_ts_web/**/*",
+    "assets/**/*",
     "cli.js",
     "npmextra.json",
     "readme.md"
