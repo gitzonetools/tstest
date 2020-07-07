@@ -113,7 +113,7 @@ export class TapParser {
    * returns all tests that threw an error
    */
   public getErrorTests() {
-    return this.testStore.filter(tapTestArg => {
+    return this.testStore.filter((tapTestArg) => {
       return !tapTestArg.testOk;
     });
   }
@@ -140,49 +140,54 @@ export class TapParser {
    * handles a tap process
    * @param childProcessArg
    */
-  async handleTapProcess(childProcessArg: ChildProcess) {
+  public async handleTapProcess(childProcessArg: ChildProcess) {
     const done = plugins.smartpromise.defer();
-    childProcessArg.stdout.on('data', data => {
+    childProcessArg.stdout.on('data', (data) => {
       this._processLog(data);
     });
-    childProcessArg.stderr.on('data', data => {
+    childProcessArg.stderr.on('data', (data) => {
       this._processLog(data);
     });
-    childProcessArg.on('exit', () => {
-      this.receivedTests = this.testStore.length;
-
-      // check wether all tests ran
-      if (this.expectedTests === this.receivedTests) {
-        console.log(
-          `${logPrefixes.TapPrefix} ${cs(
-            `${this.receivedTests} out of ${this.expectedTests} Tests completed!`,
-            'green'
-          )}`
-        );
-      } else {
-        console.log(
-          `${logPrefixes.TapErrorPrefix} ${cs(
-            `Only ${this.receivedTests} out of ${this.expectedTests} completed!`,
-            'red'
-          )}`
-        );
-      }
-      if (this.getErrorTests().length === 0) {
-        console.log(`${logPrefixes.TapPrefix} ${cs(`All tests are successfull!!!`, 'green')}`);
-      } else {
-        console.log(
-          `${logPrefixes.TapPrefix} ${cs(
-            `${this.getErrorTests().length} tests threw an error!!!`,
-            'red'
-          )}`
-        );
-      }
+    childProcessArg.on('exit', async () => {
+      await this._evaluateResult();
       done.resolve();
     });
     await done.promise;
   }
 
-  public handleTapLog(tapLog: string) {
+  public async handleTapLog(tapLog: string) {
     this._processLog(tapLog);
+    await this._evaluateResult();
+  }
+
+  private async _evaluateResult() {
+    this.receivedTests = this.testStore.length;
+
+    // check wether all tests ran
+    if (this.expectedTests === this.receivedTests) {
+      console.log(
+        `${logPrefixes.TapPrefix} ${cs(
+          `${this.receivedTests} out of ${this.expectedTests} Tests completed!`,
+          'green'
+        )}`
+      );
+    } else {
+      console.log(
+        `${logPrefixes.TapErrorPrefix} ${cs(
+          `Only ${this.receivedTests} out of ${this.expectedTests} completed!`,
+          'red'
+        )}`
+      );
+    }
+    if (this.getErrorTests().length === 0) {
+      console.log(`${logPrefixes.TapPrefix} ${cs(`All tests are successfull!!!`, 'green')}`);
+    } else {
+      console.log(
+        `${logPrefixes.TapPrefix} ${cs(
+          `${this.getErrorTests().length} tests threw an error!!!`,
+          'red'
+        )}`
+      );
+    }
   }
 }

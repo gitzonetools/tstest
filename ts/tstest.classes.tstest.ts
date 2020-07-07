@@ -48,6 +48,8 @@ export class TsTest {
           break;
       }
       tapCombinator.addTapParser(tapParser);
+      console.log(cs(`^`.repeat(16), 'cyan'));
+      console.log(''); // force new line
     }
     tapCombinator.evaluate();
   }
@@ -67,8 +69,6 @@ export class TsTest {
       `tsrun ${fileNameArg}${tsrunOptions}`
     );
     await tapParser.handleTapProcess(execResultStreaming.childProcess);
-    console.log(cs(`^`.repeat(16), 'cyan'));
-    console.log(''); // force new line
     return tapParser;
   }
 
