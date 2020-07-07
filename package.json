@@ -11,7 +11,7 @@
     "tstest": "./cli.js"
   },
   "scripts": {
-    "test": "(npm run cleanUp && npm run prepareTest && npm run tstest && npm run cleanUp)",
+    "test": "(npm run cleanUp && npm run prepareTest && npm run tstest)",
     "prepareTest": "git clone https://gitlab.com/sandboxzone/sandbox-npmts.git .nogit/sandbox-npmts && cd .nogit/sandbox-npmts && npm install",
     "tstest": "cd .nogit/sandbox-npmts && node ../../cli.ts.js test/ --web",
     "cleanUp": "rm -rf .nogit/sandbox-npmts",
