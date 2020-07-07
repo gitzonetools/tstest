@@ -11,12 +11,11 @@
     "tstest": "./cli.js"
   },
   "scripts": {
-    "test": "(npm run prepareTest && npm run tstest && npm run cleanUp)",
+    "test": "(npm run cleanUp && npm run prepareTest && npm run tstest && npm run cleanUp)",
     "prepareTest": "git clone https://gitlab.com/sandboxzone/sandbox-npmts.git .nogit/sandbox-npmts && cd .nogit/sandbox-npmts && npm install",
-    "tstest": "cd .nogit/sandbox-npmts && node ../../cli.ts.js test/",
+    "tstest": "cd .nogit/sandbox-npmts && node ../../cli.ts.js test/ --web",
     "cleanUp": "rm -rf .nogit/sandbox-npmts",
-    "format": "(gitzone format)",
-    "build": "(tsbuild)"
+    "build": "(tsbuild --web)"
   },
   "devDependencies": {
     "@gitzone/tsbuild": "^2.1.17",
@@ -25,10 +24,12 @@
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@gitzone/tsbundle": "^1.0.69",
+    "@gitzone/tsbundle": "^1.0.72",
     "@gitzone/tsrun": "^1.2.12",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartbrowser": "^1.0.17",
+    "@pushrocks/smartdelay": "^2.0.9",
+    "@pushrocks/smartexpress": "^3.0.73",
     "@pushrocks/smartfile": "^7.0.6",
     "@pushrocks/smartlog": "^2.0.19",
     "@pushrocks/smartpromise": "^3.0.6",

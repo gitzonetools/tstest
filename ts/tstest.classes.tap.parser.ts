@@ -105,14 +105,14 @@ export class TapParser {
   /**
    * returns all tests that are not completed
    */
-  getUncompletedTests() {
+  public getUncompletedTests() {
     // TODO:
   }
 
   /**
    * returns all tests that threw an error
    */
-  getErrorTests() {
+  public getErrorTests() {
     return this.testStore.filter(tapTestArg => {
       return !tapTestArg.testOk;
     });
@@ -123,7 +123,7 @@ export class TapParser {
    */
   getTestOverviewAsString() {
     let overviewString = '';
-    for (let test of this.testStore) {
+    for (const test of this.testStore) {
       if (overviewString !== '') {
         overviewString += ' | ';
       }
@@ -180,5 +180,9 @@ export class TapParser {
       done.resolve();
     });
     await done.promise;
+  }
+
+  public handleTapLog(tapLog: string) {
+    this._processLog(tapLog);
   }
 }
