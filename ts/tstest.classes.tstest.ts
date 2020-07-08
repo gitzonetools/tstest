@@ -119,7 +119,9 @@ export class TsTest {
           // create an array that will later be joined into a string.
           const stringArray = [];
 
-          if (typeof obj === 'object' && obj.join === undefined) {
+          if (typeof obj === 'object' && typeof obj.toString === 'function') {
+            stringArray.push(obj.toString());
+          } else if (typeof obj === 'object' && obj.join === undefined) {
             stringArray.push('{');
             for (const prop of Object.keys(obj)) {
               stringArray.push(prop, ': ', convertToText(obj[prop]), ',');
