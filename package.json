@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@gitzone/tsbuild": "^2.1.17",
-    "@pushrocks/tapbundle": "^3.0.13",
+    "@pushrocks/tapbundle": "^3.2.7",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0"
   },

@@ -115,42 +115,6 @@ export class TsTest {
     const evaluation = await this.smartbrowserInstance.evaluateOnPage(
       `http://localhost:3007/test?bundleName=${bundleFileName}`,
       async () => {
-        let logStore = 'Starting log capture\n';
-        // tslint:disable-next-line: max-classes-per-file
-        class Deferred<T> {
-          public promise: Promise<T>;
-          public resolve;
-          public reject;
-          public status;
-
-          public startedAt: number;
-          public stoppedAt: number;
-          public get duration(): number {
-            if (this.stoppedAt) {
-              return this.stoppedAt - this.startedAt;
-            } else {
-              return Date.now() - this.startedAt;
-            }
-          }
-
-          constructor() {
-            this.promise = new Promise<T>((resolve, reject) => {
-              this.resolve = (valueArg: T | PromiseLike<T>) => {
-                this.status = 'fulfilled';
-                this.stoppedAt = Date.now();
-                resolve(valueArg);
-              };
-              this.reject = (reason: any) => {
-                this.status = 'rejected';
-                this.stoppedAt = Date.now();
-                reject(reason);
-              };
-              this.startedAt = Date.now();
-              this.status = 'pending';
-            });
-          }
-        }
-        const done = new Deferred();
         const convertToText = (obj) => {
           // create an array that will later be joined into a string.
           const stringArray = [];
@@ -181,6 +145,9 @@ export class TsTest {
 
           return stringArray.join('');
         };
+
+        let logStore = 'Starting log capture\n';
+        // tslint:disable-next-line: max-classes-per-file
         const log = console.log.bind(console);
         console.log = (...args) => {
           args = args.map((argument) => {
@@ -204,15 +171,15 @@ export class TsTest {
         } catch (err) {
           console.error(err);
         }
-        setTimeout(() => {
-          console.log(globalThis.testdom);
-          done.resolve();
-        }, 5000);
-        await done.promise;
+        
+        if (globalThis.tapbundleDeferred && globalThis.tapbundleDeferred.promise) {
+          await globalThis.tapbundleDeferred.promise;
+        } else {
+          console.log('Error: Could not find tapbundle Deferred');
+        }
         return logStore;
       }
     );
-    await plugins.smartdelay.delayFor(1000);
     await this.smartbrowserInstance.stop();
     console.log(`${cs('=> ', 'blue')} Stopped ${cs(fileNameArg, 'orange')} chromium instance.`);
     await server.stop();
