@@ -7,7 +7,6 @@ import { coloredString as cs } from '@pushrocks/consolecolor';
 import { TestDirectory } from './tstest.classes.testdirectory';
 import { TapCombinator } from './tstest.classes.tap.combinator';
 import { TapParser } from './tstest.classes.tap.parser';
-import { threeEighths } from 'figures';
 
 export class TsTest {
   public testDir: TestDirectory;
