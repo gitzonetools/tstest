@@ -56,7 +56,7 @@ export class TsTest {
 
   public async runInNode(fileNameArg: string): Promise<TapParser> {
     console.log(`${cs('=> ', 'blue')} Running ${cs(fileNameArg, 'orange')} in node.js runtime.`);
-    console.log(cs(`=`.repeat(16), 'cyan'));
+    console.log(`${cs(`= `.repeat(32), 'cyan')}`);
     const tapParser = new TapParser(fileNameArg);
 
     // tsrun options
@@ -74,7 +74,7 @@ export class TsTest {
 
   public async runInChrome(fileNameArg: string): Promise<TapParser> {
     console.log(`${cs('=> ', 'blue')} Running ${cs(fileNameArg, 'orange')} in chromium runtime.`);
-    console.log(cs(`=`.repeat(16), 'cyan'));
+    console.log(`${cs(`= `.repeat(32), 'cyan')}`);
 
     // lets get all our paths sorted
     const tsbundleCacheDirPath = plugins.path.join(paths.cwd, './.nogit/tstest_cache');
@@ -148,7 +148,7 @@ export class TsTest {
           return stringArray.join('');
         };
 
-        let logStore = 'Starting log capture\n';
+        let logStore = '';
         // tslint:disable-next-line: max-classes-per-file
         const log = console.log.bind(console);
         console.log = (...args) => {
@@ -166,7 +166,12 @@ export class TsTest {
           logStore += `${args}\n`;
           error(...args);
         };
-        const bundle = await (await fetch('/test__test.browser.ts.js')).text();
+        const bundleName = new URLSearchParams(window.location.search).get('bundleName');
+        console.log(`::TSTEST IN CHROMIUM:: Relevant Script name is: ${bundleName}`);
+        const bundleResponse = await fetch(`/${bundleName}`);
+        console.log(`::TSTEST IN CHROMIUM:: Got ${bundleName} with STATUS ${bundleResponse.status}`);
+        const bundle = await bundleResponse.text();
+        console.log(`::TSTEST IN CHROMIUM:: Executing ${bundleName}`);
         try  {
           // tslint:disable-next-line: no-eval
           eval(bundle);
@@ -183,9 +188,9 @@ export class TsTest {
       }
     );
     await this.smartbrowserInstance.stop();
-    console.log(`${cs('=> ', 'blue')} Stopped ${cs(fileNameArg, 'orange')} chromium instance.`);
     await server.stop();
-    console.log(`${cs('=> ', 'blue')} Stopped ${cs(fileNameArg, 'orange')} server.`);
+    console.log(`${cs('=> ', 'blue')} Stopped ${cs(fileNameArg, 'orange')} chromium instance and server.`);
+    console.log(`${cs('=> ', 'blue')} See the result captured from the chromium execution:`);
     // lets create the tap parser
     const tapParser = new TapParser(fileNameArg);
     tapParser.handleTapLog(evaluation);
