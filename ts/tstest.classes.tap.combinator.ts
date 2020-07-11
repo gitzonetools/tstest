@@ -20,7 +20,15 @@ export class TapCombinator {
 
     let failGlobal = false; // determine wether tstest should fail
     for (const tapParser of this.tapParserStore) {
-      if (tapParser.getErrorTests().length === 0) {
+      if (!tapParser.expectedTests) {
+        failGlobal = true;
+        let overviewString =
+          logPrefixes.TsTestPrefix +
+          cs(` ${tapParser.fileName} ${plugins.figures.cross}`, 'red') +
+          ` ${plugins.figures.pointer} ` +
+          `does not specify tests!`;
+        console.log(overviewString);
+      } else if (tapParser.getErrorTests().length === 0) {
         let overviewString =
           logPrefixes.TsTestPrefix +
           cs(` ${tapParser.fileName} ${plugins.figures.tick}`, 'green') +
@@ -28,13 +36,13 @@ export class TapCombinator {
           tapParser.getTestOverviewAsString();
         console.log(overviewString);
       } else {
+        failGlobal = true;
         let overviewString =
           logPrefixes.TsTestPrefix +
           cs(` ${tapParser.fileName} ${plugins.figures.cross}`, 'red') +
           ` ${plugins.figures.pointer} ` +
           tapParser.getTestOverviewAsString();
         console.log(overviewString);
-        failGlobal = true;
       }
     }
     console.log(cs(plugins.figures.hamburger.repeat(48), 'cyan'));
