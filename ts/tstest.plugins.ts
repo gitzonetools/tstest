@@ -12,8 +12,9 @@ import * as smartfile from '@pushrocks/smartfile';
 import * as smartlog from '@pushrocks/smartlog';
 import * as smartpromise from '@pushrocks/smartpromise';
 import * as smartshell from '@pushrocks/smartshell';
+import * as tapbundle from '@pushrocks/tapbundle';
 
-export { consolecolor, smartbrowser, smartexpress, smartdelay, smartfile, smartlog, smartpromise, smartshell };
+export { consolecolor, smartbrowser, smartexpress, smartdelay, smartfile, smartlog, smartpromise, smartshell, tapbundle };
 
 // @gitzone scope
 import * as tsbundle from '@gitzone/tsbundle';
