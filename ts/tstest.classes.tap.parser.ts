@@ -182,7 +182,12 @@ export class TapParser {
     if (!this.expectedTests) {
       console.log(cs('Error: No tests were defined. Therefore the testfile failed!', 'red'));
     } else if (this.expectedTests !== this.receivedTests) {
-      console.log(cs('Error: The amount of received tests and expectedTests is unequal! Therefore the testfile failed', 'red'));
+      console.log(
+        cs(
+          'Error: The amount of received tests and expectedTests is unequal! Therefore the testfile failed',
+          'red'
+        )
+      );
     } else if (this.getErrorTests().length === 0) {
       console.log(`${logPrefixes.TapPrefix} ${cs(`All tests are successfull!!!`, 'green')}`);
     } else {

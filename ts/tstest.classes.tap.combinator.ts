@@ -28,6 +28,15 @@ export class TapCombinator {
           ` ${plugins.figures.pointer} ` +
           `does not specify tests!`;
         console.log(overviewString);
+      } else if (tapParser.expectedTests !== tapParser.receivedTests) {
+        failGlobal = true;
+        let overviewString =
+          logPrefixes.TsTestPrefix +
+          cs(` ${tapParser.fileName} ${plugins.figures.cross}`, 'red') +
+          ` ${plugins.figures.pointer} ` +
+          tapParser.getTestOverviewAsString() +
+          `did not execute all specified tests!`;
+        console.log(overviewString);
       } else if (tapParser.getErrorTests().length === 0) {
         let overviewString =
           logPrefixes.TsTestPrefix +

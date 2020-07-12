@@ -168,16 +168,18 @@ export class TsTest {
         const bundleName = new URLSearchParams(window.location.search).get('bundleName');
         console.log(`::TSTEST IN CHROMIUM:: Relevant Script name is: ${bundleName}`);
         const bundleResponse = await fetch(`/${bundleName}`);
-        console.log(`::TSTEST IN CHROMIUM:: Got ${bundleName} with STATUS ${bundleResponse.status}`);
+        console.log(
+          `::TSTEST IN CHROMIUM:: Got ${bundleName} with STATUS ${bundleResponse.status}`
+        );
         const bundle = await bundleResponse.text();
         console.log(`::TSTEST IN CHROMIUM:: Executing ${bundleName}`);
-        try  {
+        try {
           // tslint:disable-next-line: no-eval
           eval(bundle);
         } catch (err) {
           console.error(err);
         }
-        
+
         if (globalThis.tapbundleDeferred && globalThis.tapbundleDeferred.promise) {
           await globalThis.tapbundleDeferred.promise;
         } else {
@@ -188,7 +190,9 @@ export class TsTest {
     );
     await this.smartbrowserInstance.stop();
     await server.stop();
-    console.log(`${cs('=> ', 'blue')} Stopped ${cs(fileNameArg, 'orange')} chromium instance and server.`);
+    console.log(
+      `${cs('=> ', 'blue')} Stopped ${cs(fileNameArg, 'orange')} chromium instance and server.`
+    );
     console.log(`${cs('=> ', 'blue')} See the result captured from the chromium execution:`);
     // lets create the tap parser
     const tapParser = new TapParser(fileNameArg);

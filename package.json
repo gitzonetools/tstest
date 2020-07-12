@@ -48,5 +48,8 @@
     "cli.js",
     "npmextra.json",
     "readme.md"
+  ],
+  "browserslist": [
+    "last 1 chrome versions"
   ]
 }

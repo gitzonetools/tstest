@@ -14,14 +14,22 @@ import * as smartpromise from '@pushrocks/smartpromise';
 import * as smartshell from '@pushrocks/smartshell';
 import * as tapbundle from '@pushrocks/tapbundle';
 
-export { consolecolor, smartbrowser, smartexpress, smartdelay, smartfile, smartlog, smartpromise, smartshell, tapbundle };
+export {
+  consolecolor,
+  smartbrowser,
+  smartexpress,
+  smartdelay,
+  smartfile,
+  smartlog,
+  smartpromise,
+  smartshell,
+  tapbundle,
+};
 
 // @gitzone scope
 import * as tsbundle from '@gitzone/tsbundle';
 
-export {
-  tsbundle
-};
+export { tsbundle };
 
 // sindresorhus
 import * as figures from 'figures';
