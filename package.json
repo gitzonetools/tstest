@@ -30,7 +30,7 @@
     "@pushrocks/smartdelay": "^2.0.10",
     "@pushrocks/smartexpress": "^3.0.76",
     "@pushrocks/smartfile": "^8.0.0",
-    "@pushrocks/smartlog": "^2.0.36",
+    "@pushrocks/smartlog": "^2.0.39",
     "@pushrocks/smartpromise": "^3.0.6",
     "@pushrocks/smartshell": "^2.0.25",
     "@pushrocks/tapbundle": "^3.2.9",

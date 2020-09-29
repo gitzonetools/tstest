@@ -37,16 +37,23 @@ export class TsTest {
 
     const tapCombinator = new TapCombinator(); // lets create the TapCombinator
     for (const fileNameArg of fileNamesToRun) {
-      let tapParser: TapParser;
       switch (true) {
         case fileNameArg.endsWith('.browser.ts'):
-          tapParser = await this.runInChrome(fileNameArg);
+          const tapParserBrowser = await this.runInChrome(fileNameArg);
+          tapCombinator.addTapParser(tapParserBrowser);
           break;
+        case fileNameArg.endsWith('.both.ts'):
+            const tapParserBothBrowser = await this.runInChrome(fileNameArg);
+            tapCombinator.addTapParser(tapParserBothBrowser);
+            const tapParserBothNode = await this.runInNode(fileNameArg);
+            tapCombinator.addTapParser(tapParserBothBrowser);
+            break;
         default:
-          tapParser = await this.runInNode(fileNameArg);
+          const tapParserNode = await this.runInNode(fileNameArg);
+          tapCombinator.addTapParser(tapParserNode);
           break;
       }
-      tapCombinator.addTapParser(tapParser);
+      
       console.log(cs(`^`.repeat(16), 'cyan'));
       console.log(''); // force new line
     }
