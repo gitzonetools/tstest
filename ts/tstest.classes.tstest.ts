@@ -67,7 +67,7 @@ export class TsTest {
   public async runInNode(fileNameArg: string): Promise<TapParser> {
     console.log(`${cs('=> ', 'blue')} Running ${cs(fileNameArg, 'orange')} in node.js runtime.`);
     console.log(`${cs(`= `.repeat(32), 'cyan')}`);
-    const tapParser = new TapParser(fileNameArg);
+    const tapParser = new TapParser(fileNameArg + ':node');
 
     // tsrun options
     let tsrunOptions = '';
@@ -206,7 +206,7 @@ export class TsTest {
     );
     console.log(`${cs('=> ', 'blue')} See the result captured from the chromium execution:`);
     // lets create the tap parser
-    const tapParser = new TapParser(fileNameArg);
+    const tapParser = new TapParser(fileNameArg + ':chrome');
     tapParser.handleTapLog(evaluation);
     return tapParser;
   }
