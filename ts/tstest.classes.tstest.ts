@@ -50,7 +50,7 @@ export class TsTest {
             console.log(''); // force new line
             console.log('>>>>>>> TEST PART 2: node');
             const tapParserBothNode = await this.runInNode(fileNameArg);
-            tapCombinator.addTapParser(tapParserBothBrowser);
+            tapCombinator.addTapParser(tapParserBothNode);
             break;
         default:
           const tapParserNode = await this.runInNode(fileNameArg);
