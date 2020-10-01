@@ -33,7 +33,7 @@ auditProductionDependencies:
     - npmci npm prepare
     - npmci command npm install --production --ignore-scripts
     - npmci command npm config set registry https://registry.npmjs.org
-    - # npmci command npm audit --audit-level=high --only=prod --production
+    # - npmci command npm audit --audit-level=high --only=prod --production
   tags:
     - docker
 
