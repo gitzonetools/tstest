@@ -40,7 +40,9 @@ export class TsTest {
       switch (true) {
         case process.env.CI && fileNameArg.includes('.nonci.'):
           console.log('!!!!!!!!!!!');
-          console.log(`not running testfile ${fileNameArg}, sinc we are CI and file name includes '.nonci.' tag`);
+          console.log(
+            `not running testfile ${fileNameArg}, sinc we are CI and file name includes '.nonci.' tag`
+          );
           console.log('!!!!!!!!!!!');
           break;
         case fileNameArg.endsWith('.browser.ts'):
@@ -48,21 +50,21 @@ export class TsTest {
           tapCombinator.addTapParser(tapParserBrowser);
           break;
         case fileNameArg.endsWith('.both.ts'):
-            console.log('>>>>>>> TEST PART 1: chrome');
-            const tapParserBothBrowser = await this.runInChrome(fileNameArg);
-            tapCombinator.addTapParser(tapParserBothBrowser);
-            console.log(cs(`|`.repeat(16), 'cyan'));
-            console.log(''); // force new line
-            console.log('>>>>>>> TEST PART 2: node');
-            const tapParserBothNode = await this.runInNode(fileNameArg);
-            tapCombinator.addTapParser(tapParserBothNode);
-            break;
+          console.log('>>>>>>> TEST PART 1: chrome');
+          const tapParserBothBrowser = await this.runInChrome(fileNameArg);
+          tapCombinator.addTapParser(tapParserBothBrowser);
+          console.log(cs(`|`.repeat(16), 'cyan'));
+          console.log(''); // force new line
+          console.log('>>>>>>> TEST PART 2: node');
+          const tapParserBothNode = await this.runInNode(fileNameArg);
+          tapCombinator.addTapParser(tapParserBothNode);
+          break;
         default:
           const tapParserNode = await this.runInNode(fileNameArg);
           tapCombinator.addTapParser(tapParserNode);
           break;
       }
-      
+
       console.log(cs(`^`.repeat(16), 'cyan'));
       console.log(''); // force new line
     }
