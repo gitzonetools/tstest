@@ -38,6 +38,11 @@ export class TsTest {
     const tapCombinator = new TapCombinator(); // lets create the TapCombinator
     for (const fileNameArg of fileNamesToRun) {
       switch (true) {
+        case process.env.CI && fileNameArg.includes('.nonci.'):
+          console.log('!!!!!!!!!!!');
+          console.log(`not running testfile ${fileNameArg}, sinc we are CI and file name includes '.nonci.' tag`);
+          console.log('!!!!!!!!!!!');
+          break;
         case fileNameArg.endsWith('.browser.ts'):
           const tapParserBrowser = await this.runInChrome(fileNameArg);
           tapCombinator.addTapParser(tapParserBrowser);
