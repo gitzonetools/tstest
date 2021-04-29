@@ -23,17 +23,17 @@
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@gitzone/tsbundle": "^1.0.78",
+    "@gitzone/tsbundle": "^1.0.80",
     "@gitzone/tsrun": "^1.2.12",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartbrowser": "^1.0.17",
     "@pushrocks/smartdelay": "^2.0.10",
-    "@pushrocks/smartexpress": "^3.0.76",
-    "@pushrocks/smartfile": "^8.0.0",
+    "@pushrocks/smartexpress": "^3.0.100",
+    "@pushrocks/smartfile": "^8.0.10",
     "@pushrocks/smartlog": "^2.0.39",
-    "@pushrocks/smartpromise": "^3.0.6",
+    "@pushrocks/smartpromise": "^3.1.5",
     "@pushrocks/smartshell": "^2.0.25",
-    "@pushrocks/tapbundle": "^3.2.9",
+    "@pushrocks/tapbundle": "^3.2.14",
     "@types/figures": "^3.0.1",
     "figures": "^3.0.0"
   },
