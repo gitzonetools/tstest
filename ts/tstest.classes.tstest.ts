@@ -100,7 +100,7 @@ export class TsTest {
 
     // lets bundle the test
     await plugins.smartfile.fs.ensureDir(tsbundleCacheDirPath);
-    await this.tsbundleInstance.buildTest(fileNameArg, bundleFilePath, 'parcel');
+    await this.tsbundleInstance.buildTest(process.cwd(), fileNameArg, bundleFilePath, 'parcel');
 
     // lets create a server
     const server = new plugins.smartexpress.Server({
@@ -132,7 +132,7 @@ export class TsTest {
     const evaluation = await this.smartbrowserInstance.evaluateOnPage(
       `http://localhost:3007/test?bundleName=${bundleFileName}`,
       async () => {
-        const convertToText = (obj) => {
+        const convertToText = (obj: any): string => {
           // create an array that will later be joined into a string.
           const stringArray = [];
 
@@ -198,8 +198,8 @@ export class TsTest {
           console.error(err);
         }
 
-        if (globalThis.tapbundleDeferred && globalThis.tapbundleDeferred.promise) {
-          await globalThis.tapbundleDeferred.promise;
+        if ((globalThis as any).tapbundleDeferred  && (globalThis as any).tapbundleDeferred.promise) {
+          await (globalThis as any).tapbundleDeferred.promise;
         } else {
           console.log('Error: Could not find tapbundle Deferred');
         }
