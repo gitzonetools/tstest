@@ -198,7 +198,10 @@ export class TsTest {
           console.error(err);
         }
 
-        if ((globalThis as any).tapbundleDeferred  && (globalThis as any).tapbundleDeferred.promise) {
+        if (
+          (globalThis as any).tapbundleDeferred &&
+          (globalThis as any).tapbundleDeferred.promise
+        ) {
           await (globalThis as any).tapbundleDeferred.promise;
         } else {
           console.log('Error: Could not find tapbundle Deferred');
