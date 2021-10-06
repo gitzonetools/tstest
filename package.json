@@ -18,12 +18,12 @@
     "build": "(tsbuild --web)"
   },
   "devDependencies": {
-    "@gitzone/tsbuild": "^2.1.27",
+    "@gitzone/tsbuild": "^2.1.28",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@gitzone/tsbundle": "^1.0.87",
+    "@gitzone/tsbundle": "^1.0.88",
     "@gitzone/tsrun": "^1.2.18",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartbrowser": "^1.0.17",
