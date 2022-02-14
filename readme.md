@@ -25,9 +25,28 @@ Platform support | [![Supports Windows 10](https://badgen.net/badge/supports%20W
 
 ## Usage
 
-## Contribution
+## cli usage
+lets assume we have a directory called test/ where all our tests arae defined. Simply type
 
-We are always happy for code contributions. If you are not the code contributing type that is ok. Still, maintaining Open Source repositories takes considerable time and thought. If you like the quality of what we do and our modules are useful to you we would appreciate a little monthly contribution: You can [contribute one time](https://lossless.link/contribute-onetime) or [contribute monthly](https://lossless.link/contribute). :)
+```
+tstest test/
+```
+
+to run all tests.
+
+## Syntax
+tstest supports tap syntax. In other words your testfiles are run in a subprocess, and the console output contains trigger messages for tstest to determine test status. Inside your testfile you should use `@pushrocks/tapbundle` for the best results.
+
+## Environments
+
+tstest supports different environments:
+
+* a testfile called `test-something.node.ts` will be run in node
+* a testfile called `test-something.chrome.ts` will be run in chrome environment (bundled through parcel and run through puppeteer)
+* a testfile called `test-something.both.ts` will be run in node an chrome, which is good for isomorphic packages.
+
+> note: there is alpha support for the deno environment by naming a file test-something.deno.ts
+
 
 ## Contribution
 
