@@ -35,7 +35,8 @@
     "@pushrocks/smartshell": "^2.0.30",
     "@pushrocks/tapbundle": "^4.0.3",
     "@types/figures": "^3.0.1",
-    "figures": "^4.0.0"
+    "figures": "^3.0.0"
+
   },
   "files": [
     "ts/**/*",
