@@ -12,6 +12,9 @@ stages:
   - release
   - metadata
 
+before_script:
+  - npm install -g @shipzone/npmci
+
 # ====================
 # security stage
 # ====================

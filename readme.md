@@ -26,6 +26,7 @@ Platform support | [![Supports Windows 10](https://badgen.net/badge/supports%20W
 ## Usage
 
 ## cli usage
+
 lets assume we have a directory called test/ where all our tests arae defined. Simply type
 
 ```
@@ -35,18 +36,18 @@ tstest test/
 to run all tests.
 
 ## Syntax
+
 tstest supports tap syntax. In other words your testfiles are run in a subprocess, and the console output contains trigger messages for tstest to determine test status. Inside your testfile you should use `@pushrocks/tapbundle` for the best results.
 
 ## Environments
 
 tstest supports different environments:
 
-* a testfile called `test-something.node.ts` will be run in node
-* a testfile called `test-something.chrome.ts` will be run in chrome environment (bundled through parcel and run through puppeteer)
-* a testfile called `test-something.both.ts` will be run in node an chrome, which is good for isomorphic packages.
+- a testfile called `test-something.node.ts` will be run in node
+- a testfile called `test-something.chrome.ts` will be run in chrome environment (bundled through parcel and run through puppeteer)
+- a testfile called `test-something.both.ts` will be run in node an chrome, which is good for isomorphic packages.
 
 > note: there is alpha support for the deno environment by naming a file test-something.deno.ts
-
 
 ## Contribution
 
