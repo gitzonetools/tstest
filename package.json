@@ -16,7 +16,7 @@
     "prepareTest": "git clone https://gitlab.com/sandboxzone/sandbox-npmts.git .nogit/sandbox-npmts && cd .nogit/sandbox-npmts && npm install",
     "tstest": "cd .nogit/sandbox-npmts && node ../../cli.ts.js test/ --web",
     "cleanUp": "rm -rf .nogit/sandbox-npmts",
-    "build": "(tsbuild --web)"
+    "build": "(tsbuild --web --skiplibcheck)"
   },
   "devDependencies": {
     "@gitzone/tsbuild": "^2.1.48",
