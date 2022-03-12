@@ -1,12 +1,12 @@
-import * as plugins from './tstest.plugins';
-import * as paths from './tstest.paths';
-import * as logPrefixes from './tstest.logprefixes';
+import * as plugins from './tstest.plugins.js';
+import * as paths from './tstest.paths.js';
+import * as logPrefixes from './tstest.logprefixes.js';
 
 import { coloredString as cs } from '@pushrocks/consolecolor';
 
-import { TestDirectory } from './tstest.classes.testdirectory';
-import { TapCombinator } from './tstest.classes.tap.combinator';
-import { TapParser } from './tstest.classes.tap.parser';
+import { TestDirectory } from './tstest.classes.testdirectory.js';
+import { TapCombinator } from './tstest.classes.tap.combinator.js';
+import { TapParser } from './tstest.classes.tap.parser.js';
 
 export class TsTest {
   public testDir: TestDirectory;
@@ -100,7 +100,7 @@ export class TsTest {
 
     // lets bundle the test
     await plugins.smartfile.fs.ensureDir(tsbundleCacheDirPath);
-    await this.tsbundleInstance.buildTest(process.cwd(), fileNameArg, bundleFilePath, 'parcel');
+    await this.tsbundleInstance.buildTest(process.cwd(), fileNameArg, bundleFilePath, 'rollup');
 
     // lets create a server
     const server = new plugins.smartexpress.Server({

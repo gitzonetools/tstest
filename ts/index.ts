@@ -1,4 +1,4 @@
-import { TsTest } from './tstest.classes.tstest';
+import { TsTest } from './tstest.classes.tstest.js';
 
 export const runCli = async () => {
   if (!process.argv[2]) {

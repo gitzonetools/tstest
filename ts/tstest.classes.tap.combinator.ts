@@ -1,11 +1,11 @@
 // ============
 // combines different tap test files to an overall result
 // ============
-import * as plugins from './tstest.plugins';
+import * as plugins from './tstest.plugins.js';
 import { coloredString as cs } from '@pushrocks/consolecolor';
 
-import { TapParser } from './tstest.classes.tap.parser';
-import * as logPrefixes from './tstest.logprefixes';
+import { TapParser } from './tstest.classes.tap.parser.js';
+import * as logPrefixes from './tstest.logprefixes.js';
 
 export class TapCombinator {
   tapParserStore: TapParser[] = [];

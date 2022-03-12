@@ -1,4 +1,4 @@
-import * as plugins from './tstest.plugins';
+import * as plugins from './tstest.plugins.js';
 import { coloredString as cs } from '@pushrocks/consolecolor';
 
 export const TapPrefix = cs(`::TAP::`, 'pink', 'black');

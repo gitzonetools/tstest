@@ -32,6 +32,6 @@ import * as tsbundle from '@gitzone/tsbundle';
 export { tsbundle };
 
 // sindresorhus
-import * as figures from 'figures';
+import figures from 'figures';
 
 export { figures };

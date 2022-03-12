@@ -1,11 +1,11 @@
-import * as plugins from './tstest.plugins';
-import * as paths from './tstest.paths';
+import * as plugins from './tstest.plugins.js';
+import * as paths from './tstest.paths.js';
 import { Smartfile } from '@pushrocks/smartfile';
 
 // tap related stuff
-import { TapCombinator } from './tstest.classes.tap.combinator';
-import { TapParser } from './tstest.classes.tap.parser';
-import { TapTestResult } from './tstest.classes.tap.testresult';
+import { TapCombinator } from './tstest.classes.tap.combinator.js';
+import { TapParser } from './tstest.classes.tap.parser.js';
+import { TapTestResult } from './tstest.classes.tap.testresult.js';
 
 export class TestDirectory {
   /**

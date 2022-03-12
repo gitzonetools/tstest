@@ -5,6 +5,7 @@
   "description": "a test utility to run tests that match test/**/*.ts",
   "main": "dist_ts/index.js",
   "typings": "dist_ts/index.d.ts",
+  "type": "module",
   "author": "Lossless GmbH",
   "license": "MIT",
   "bin": {
@@ -18,24 +19,24 @@
     "build": "(tsbuild --web)"
   },
   "devDependencies": {
-    "@gitzone/tsbuild": "^2.1.29",
+    "@gitzone/tsbuild": "^2.1.48",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@gitzone/tsbundle": "^1.0.89",
-    "@gitzone/tsrun": "^1.2.18",
+    "@gitzone/tsbundle": "^1.0.91",
+    "@gitzone/tsrun": "^1.2.31",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartbrowser": "^1.0.22",
     "@pushrocks/smartdelay": "^2.0.13",
     "@pushrocks/smartexpress": "^3.0.108",
-    "@pushrocks/smartfile": "^9.0.5",
+    "@pushrocks/smartfile": "^9.0.6",
     "@pushrocks/smartlog": "^2.0.44",
-    "@pushrocks/smartpromise": "^3.1.6",
+    "@pushrocks/smartpromise": "^3.1.7",
     "@pushrocks/smartshell": "^2.0.30",
-    "@pushrocks/tapbundle": "^4.0.3",
+    "@pushrocks/tapbundle": "^4.0.8",
     "@types/figures": "^3.0.1",
-    "figures": "^3.0.0"
+    "figures": "^4.0.0"
   },
   "files": [
     "ts/**/*",

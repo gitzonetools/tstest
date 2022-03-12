@@ -4,9 +4,9 @@ import { coloredString as cs } from '@pushrocks/consolecolor';
 // ============
 // combines different tap test files to an overall result
 // ============
-import * as plugins from './tstest.plugins';
-import { TapTestResult } from './tstest.classes.tap.testresult';
-import * as logPrefixes from './tstest.logprefixes';
+import * as plugins from './tstest.plugins.js';
+import { TapTestResult } from './tstest.classes.tap.testresult.js';
+import * as logPrefixes from './tstest.logprefixes.js';
 
 export class TapParser {
   testStore: TapTestResult[] = [];
