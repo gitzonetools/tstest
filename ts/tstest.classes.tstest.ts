@@ -99,7 +99,7 @@ export class TsTest {
     const bundleFilePath = plugins.path.join(tsbundleCacheDirPath, bundleFileName);
 
     // lets bundle the test
-    await plugins.smartfile.fs.ensureDir(tsbundleCacheDirPath);
+    await plugins.smartfile.fs.ensureEmptyDir(tsbundleCacheDirPath);
     await this.tsbundleInstance.buildTest(process.cwd(), fileNameArg, bundleFilePath, 'rollup');
 
     // lets create a server
