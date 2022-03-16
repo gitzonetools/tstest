@@ -100,7 +100,9 @@ export class TsTest {
 
     // lets bundle the test
     await plugins.smartfile.fs.ensureEmptyDir(tsbundleCacheDirPath);
-    await this.tsbundleInstance.buildTest(process.cwd(), fileNameArg, bundleFilePath, 'rollup');
+    await this.tsbundleInstance.build(process.cwd(), fileNameArg, bundleFilePath, {
+      bundler: 'esbuild'
+    });
 
     // lets create a server
     const server = new plugins.smartexpress.Server({
