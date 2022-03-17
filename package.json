@@ -24,7 +24,7 @@
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@gitzone/tsbundle": "^1.0.97",
+    "@gitzone/tsbundle": "^1.0.99",
     "@gitzone/tsrun": "^1.2.31",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartbrowser": "^1.0.22",
