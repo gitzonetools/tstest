@@ -41,15 +41,15 @@ export class TsTest {
         case process.env.CI && fileNameArg.includes('.nonci.'):
           console.log('!!!!!!!!!!!');
           console.log(
-            `not running testfile ${fileNameArg}, sinc we are CI and file name includes '.nonci.' tag`
+            `not running testfile ${fileNameArg}, since we are CI and file name includes '.nonci.' tag`
           );
           console.log('!!!!!!!!!!!');
           break;
-        case fileNameArg.endsWith('.browser.ts'):
+        case (fileNameArg.endsWith('.browser.ts') || fileNameArg.endsWith('.browser.nonci.ts' )):
           const tapParserBrowser = await this.runInChrome(fileNameArg);
           tapCombinator.addTapParser(tapParserBrowser);
           break;
-        case fileNameArg.endsWith('.both.ts'):
+        case (fileNameArg.endsWith('.both.ts') || fileNameArg.endsWith('.both.nonci.ts')):
           console.log('>>>>>>> TEST PART 1: chrome');
           const tapParserBothBrowser = await this.runInChrome(fileNameArg);
           tapCombinator.addTapParser(tapParserBothBrowser);
@@ -136,7 +136,7 @@ export class TsTest {
       async () => {
         const convertToText = (obj: any): string => {
           // create an array that will later be joined into a string.
-          const stringArray = [];
+          const stringArray: string[] = [];
 
           if (typeof obj === 'object' && typeof obj.toString === 'function') {
             stringArray.push(obj.toString());
