@@ -19,22 +19,22 @@
     "build": "(tsbuild --web --allowimplicitany)"
   },
   "devDependencies": {
-    "@gitzone/tsbuild": "^2.1.63",
+    "@gitzone/tsbuild": "^2.1.65",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
-    "@gitzone/tsbundle": "^2.0.5",
+    "@gitzone/tsbundle": "^2.0.6",
     "@gitzone/tsrun": "^1.2.37",
     "@pushrocks/consolecolor": "^2.0.1",
     "@pushrocks/smartbrowser": "^2.0.2",
     "@pushrocks/smartdelay": "^2.0.13",
-    "@pushrocks/smartexpress": "^4.0.5",
-    "@pushrocks/smartfile": "^10.0.2",
-    "@pushrocks/smartlog": "^3.0.0",
+    "@pushrocks/smartexpress": "^4.0.21",
+    "@pushrocks/smartfile": "^10.0.4",
+    "@pushrocks/smartlog": "^3.0.1",
     "@pushrocks/smartpromise": "^3.1.7",
     "@pushrocks/smartshell": "^2.0.30",
-    "@pushrocks/tapbundle": "^5.0.3",
+    "@pushrocks/tapbundle": "^5.0.4",
     "@types/figures": "^3.0.1",
     "figures": "^4.0.1"
   },
